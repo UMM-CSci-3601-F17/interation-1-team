@@ -1,4 +1,3 @@
-/*
 import {ComponentFixture, TestBed} from '@angular/core/testing';
 import {By} from '@angular/platform-browser';
 import {DebugElement} from '@angular/core';
@@ -34,13 +33,19 @@ describe('AppComponent', () => {
     });
 
     it(`should have as title 'app'`, () => {
-        expect(appInstance.title).toEqual('Angular Spark lab');
+        expect(appInstance.title).toEqual('I am SAGE');
     });
 
-    it('should render title in the navbar', () => {
+    it('should render home icon in the navbar', () => {
         appFixture.detectChanges();
         let navbar: HTMLElement = debugElement.query(By.css('td-layout-nav')).nativeElement;
-        expect(navbar.textContent).toContain('Covalent');
+        expect(navbar.textContent).toContain("home");
     });
+
+    it('should have sidebar title `I am SAGE`',() => {
+        appFixture.detectChanges();
+        let sidebar: HTMLElement = debugElement.query(By.css('td-navigation-drawer')).nativeElement;
+        expect(sidebar.textContent).toContain("I am SAGE");
+    })
 });
-*/
+
