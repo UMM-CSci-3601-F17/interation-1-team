@@ -13,7 +13,14 @@ import {Observable} from "rxjs";
 export class createcardListComponent implements OnInit {
     //These are public so that tests can reference them (.spec.ts)
     public sages: Sage[];
+    public allcards: Sage[];
     private sageAddSuccess : Boolean = false;
+
+    public sageWord : string;
+    public sageSynonym : string;
+    public sageAntonym : string;
+    public sageGensense : string;
+    public sageExample : string;
 
     public newSageWord:string;
     public newSageSynonym: string;
@@ -44,13 +51,38 @@ export class createcardListComponent implements OnInit {
             this.sageListService.addNewSage(word, synonym, antonym, gensense, example).subscribe(
                 succeeded => {
                     this.sageAddSuccess = succeeded;
+                    this.refreshSages();
                 });
         } else {
             console.log("Failed to add card, missing params");
         }
     }
 
+    showSages() : Sage[] {
+        this.allcards = this.sages;
+        return this.allcards;
+    }
+
+    refreshSages(): Observable<Sage[]> {
+        //Get Users returns an Observable, basically a "promise" that
+        //we will get the data from the server.
+        //
+        //Subscribe waits until the data is fully downloaded, then
+        //performs an action on it (the first lambda)
+
+        let sages : Observable<Sage[]> = this.sageListService.getSages();
+        sages.subscribe(
+            sages => {
+                this.sages = sages;
+            },
+            err => {
+                console.log(err);
+            });
+        return sages;
+    }
+
     ngOnInit(): void {
+        this.refreshSages();
     }
 
 }

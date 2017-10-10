@@ -15,6 +15,15 @@ export class createcardsListService {
     constructor(private http: Http) {
     }
 
+    getSages(): Observable<Sage[]> {
+        let observable: Observable<any> = this.http.request(this.sageUrl);
+        return observable.map(res => res.json());
+    }
+
+    getSageById(id: string): Observable<Sage> {
+        return this.http.request(this.sageUrl + "/" + id).map(res => res.json());
+    }
+
     addNewSage(word : string, synonym : string, antonym : string, gensense : string, example : string): Observable<Boolean> {
         const body = {word:word, synonym:synonym, antonym:antonym, gensense:gensense, example:example};
         console.log(body);
