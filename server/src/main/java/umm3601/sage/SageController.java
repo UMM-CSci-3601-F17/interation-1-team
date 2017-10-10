@@ -2,15 +2,18 @@ package umm3601.sage;
 
 import com.google.gson.Gson;
 import com.mongodb.*;
+import com.mongodb.client.AggregateIterable;
 import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
+import com.mongodb.client.model.Aggregates;
 import com.mongodb.util.JSON;
 import org.bson.Document;
 import org.bson.types.ObjectId;
 import spark.Request;
 import spark.Response;
 
+import java.util.Arrays;
 import java.util.Iterator;
 import java.util.Map;
 
@@ -103,6 +106,12 @@ public class SageController {
         return getSages(req.queryMap().toMap());
     }
 
+    public String getSingleSage(Request req, Response res)
+    {
+        res.type("application/json");
+        return getSingleSages(req.queryMap().toMap());
+    }
+
     /**
      * @param queryParams
      * @return an array of Users in a JSON formatted string
@@ -115,6 +124,21 @@ public class SageController {
         FindIterable<Document> matchingSages = sageCollection.find(filterDoc);
 
         return JSON.serialize(matchingSages);
+    }
+
+    public String getSingleSages(Map<String, String[]> queryParams) {
+
+        Document filterDoc = new Document();
+
+        Iterable<Document> limit1 = sageCollection.aggregate(
+            Arrays.asList(
+                Aggregates.limit(1)
+            ));
+
+        //FindIterable comes from mongo, Document comes from Gson
+        //FindIterable<Document> matchingSages = sageCollection.find(filterDoc);
+
+        return JSON.serialize(limit1);
     }
 
     /**

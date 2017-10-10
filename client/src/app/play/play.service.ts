@@ -10,7 +10,7 @@ import {environment} from "../../environments/environment";
 
 @Injectable()
 export class playService {
-    private sageUrl: string = environment.API_URL + "sages";
+    private sageUrl: string = environment.API_URL + "onesage";
 
     constructor(private http: Http) {
     }
