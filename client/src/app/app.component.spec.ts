@@ -41,11 +41,31 @@ describe('AppComponent', () => {
         let navbar: HTMLElement = debugElement.query(By.css('td-layout-nav')).nativeElement;
         expect(navbar.textContent).toContain("home");
     });
-
+    
     it('should have sidebar title `I am SAGE`',() => {
         appFixture.detectChanges();
         let sidebar: HTMLElement = debugElement.query(By.css('td-navigation-drawer')).nativeElement;
         expect(sidebar.textContent).toContain("I am SAGE");
     })
+
+    it('should have `Home` in the sidebar',() => {
+        appFixture.detectChanges();
+        let sidebar: HTMLElement = debugElement.query(By.css('mat-nav-list')).nativeElement;
+        expect(sidebar.textContent).toContain("Home");
+    })
+
+    it('should have `Play` in the sidebar',() => {
+        appFixture.detectChanges();
+        let sidebar: HTMLElement = debugElement.query(By.css('mat-nav-list')).nativeElement;
+        expect(sidebar.textContent).toContain("Play");
+    })
+
+    it('should have `Add a Card` in the sidebar',() => {
+        appFixture.detectChanges();
+        let sidebar: HTMLElement = debugElement.query(By.css('mat-nav-list')).nativeElement;
+        expect(sidebar.textContent).toContain("Add a Card");
+    })
+
+
 });
 
