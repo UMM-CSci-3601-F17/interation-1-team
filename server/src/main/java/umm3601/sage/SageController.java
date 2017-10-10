@@ -17,7 +17,7 @@ import java.util.Map;
 import static com.mongodb.client.model.Filters.eq;
 
 /**
- * Controller that manages requests for info about users.
+ * Controller that manages requests for info about all SAGE objects.
  */
 public class SageController {
 
@@ -26,9 +26,9 @@ public class SageController {
     private final MongoCollection<Document> sageCollection;
 
     /**
-     * Construct a controller for users.
+     * Construct a controller for SAGEs.
      *
-     * @param database the database containing user data
+     * @param database the database containing SAGE data
      */
     public SageController(MongoDatabase database) {
         gson = new Gson();
@@ -38,11 +38,11 @@ public class SageController {
 
 
     /**
-     * Get a JSON response with a list of all the users in the database.
+     * Get a JSON response with a list of all the SAGEs in the database.
      *
      * @param req the HTTP request
      * @param res the HTTP response
-     * @return one user in JSON formatted string and if it fails it will return text with a different HTTP status code
+     * @return one SAGE in JSON formatted string and if it fails it will return text with a different HTTP status code
      */
     public String getSage(Request req, Response res){
         res.type("application/json");
@@ -55,7 +55,7 @@ public class SageController {
             // form for a Mongo Object ID.
             // https://docs.mongodb.com/manual/reference/method/ObjectId/
             res.status(400);
-            res.body("The requested sage id " + id + " wasn't a legal Mongo Object ID.\n" +
+            res.body("The requested SAGE id " + id + " wasn't a legal Mongo Object ID.\n" +
                 "See 'https://docs.mongodb.com/manual/reference/method/ObjectId/' for more info.");
             return "";
         }
@@ -63,18 +63,18 @@ public class SageController {
             return sage;
         } else {
             res.status(404);
-            res.body("The requested sage with id " + id + " was not found");
+            res.body("The requested SAGE with id " + id + " was not found");
             return "";
         }
     }
 
 
     /**
-     * Get the single user specified by the `id` parameter in the request.
+     * Get the single SAGE specified by the `id` parameter in the request.
      *
-     * @param id the Mongo ID of the desired user
-     * @return the desired user as a JSON object if the user with that ID is found,
-     * and `null` if no user with that ID is found
+     * @param id the Mongo ID of the desired SAGE
+     * @return the desired SAGE as a JSON object if the SAGE with that ID is found,
+     * and `null` if no SAGE with that ID is found
      */
     public String getSage(String id) {
         FindIterable<Document> jsonSages
@@ -86,7 +86,7 @@ public class SageController {
             Document sage = iterator.next();
             return sage.toJson();
         } else {
-            // We didn't find the desired user
+            // We didn't find the desired SAGE
             return null;
         }
     }
@@ -95,7 +95,7 @@ public class SageController {
     /**
      * @param req
      * @param res
-     * @return an array of users in JSON formatted String
+     * @return an array of SAGEs in JSON formatted String
      */
     public String getSages(Request req, Response res)
     {
@@ -140,12 +140,12 @@ public class SageController {
                     String gensense = dbO.getString("gensense");
                     String example = dbO.getString("example");
 
-                    System.err.println("Adding new sage card [word=" + word + ", synonym=" + synonym + " antonym=" + antonym + " gensense=" + gensense + ", example=" + example + ']');
+                    System.err.println("Adding new SAGE card [word=" + word + ", synonym=" + synonym + " antonym=" + antonym + " gensense=" + gensense + ", example=" + example + ']');
                     return addNewSage(word, synonym, antonym, gensense, example);
                 }
                 catch(NullPointerException e)
                 {
-                    System.err.println("A value was malformed or omitted, new sage request failed.");
+                    System.err.println("A value was malformed or omitted, new SAGE request failed.");
                     return false;
                 }
 
@@ -192,9 +192,6 @@ public class SageController {
 
         return true;
     }
-
-
-
 
 }
 
