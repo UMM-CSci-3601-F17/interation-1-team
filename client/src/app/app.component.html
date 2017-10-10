@@ -2,7 +2,7 @@
     <td-navigation-drawer flex sidenavTitle="I am SAGE" >
         <mat-nav-list>
             <a mat-list-item id="homeRoute" [routerLink]="['/']" (click)="layout.close()" routerLinkActive="nav-active" [routerLinkActiveOptions]="{exact: true}"><mat-icon>home</mat-icon>Home</a>
-            <a mat-list-item id="playRoute" [routerLink]="['/users']" (click)="layout.close()" routerLinkActive="nav-active"><mat-icon>touch_app</mat-icon>Play</a>
+            <a mat-list-item id="playRoute" [routerLink]="['/play']" (click)="layout.close()" routerLinkActive="nav-active"><mat-icon>touch_app</mat-icon>Play</a>
             <a mat-list-item id="addcardRoute" [routerLink]="['/addcards']" (click)="layout.close()" routerLinkActive="nav-active"><mat-icon>add</mat-icon>Add a Card</a>
         </mat-nav-list>
     </td-navigation-drawer>
