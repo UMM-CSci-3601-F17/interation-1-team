@@ -121,7 +121,7 @@ public class SageController {
      *
      * @param req
      * @param res
-     * @return
+     * @return a boolean denoting whether the addition of the new SAGE was successful
      */
     public boolean addNewSage(Request req, Response res)
     {
@@ -170,7 +170,7 @@ public class SageController {
      * @param antonym
      * @param gensense
      * @param example
-     * @return
+     * @return a boolean denoting whether the addition of the new SAGE was successful
      */
     public boolean addNewSage(String word, String synonym, String antonym, String gensense, String example) {
 

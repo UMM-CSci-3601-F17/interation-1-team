@@ -11,3 +11,70 @@
 #list-title {
     padding-right: 14px;
 }
+
+#template-card {
+    padding: 5px;
+}
+
+#template-card mat-card-content{
+    padding: 16px;
+    background-color: #f7f7f7;
+    border: 1px solid black;
+    height: 340px;
+    width: 600px;
+    margin: 20px;
+}
+
+#template-card mat-form-field{
+    display: block;
+}
+
+
+#added-cards {
+
+}
+
+#added-cards mat-list-item {
+    background-color: #f7f7f7;
+    border: 1px solid black;
+    margin: 20px 20px 45px 20px;
+    padding: 16px;
+    display: block;
+    width: 400px;
+    height: 220px;
+
+}
+
+#word {
+    position: absolute;
+    font-size: 2em;
+    border-bottom: 1px solid gray;
+}
+
+.S {
+    position: absolute;
+    padding-top: 100px;
+    min-height: 90% !important;
+    display: block;
+}
+
+.A {
+    position: absolute;
+    padding-top: 200px;
+    min-height: 90% !important;
+    display: block;
+}
+
+.G {
+    position: absolute;
+    padding-top: 300px;
+    min-height: 90% !important;
+    display: block;
+}
+
+.E {
+    position: absolute;
+    padding-top: 400px;
+    min-height: 90% !important;
+    display: block;
+}
