@@ -1,10 +1,9 @@
-/*
 import {browser, element, by} from 'protractor';
 import {Key} from "selenium-webdriver";
 
-export class UserPage {
+export class HomePage {
     navigateTo() {
-        return browser.get('/users');
+        return browser.get('/');
     }
 
     //http://www.assertselenium.com/protractor/highlight-elements-during-your-protractor-test-run/
@@ -21,34 +20,31 @@ export class UserPage {
         return browser.executeScript(setStyle, element(byObject).getWebElement(), 'color: red; background-color: yellow;');
     }
 
-    getUserTitle() {
-        let title = element(by.id('user-list-title')).getText();
-        this.highlightElement(by.id('user-list-title'));
+    getLogo() {
+        let todo = element(by.id('i-am-sage')).getText();
+        this.highlightElement(by.id('i-am-sage'));
 
-        return title;
+        return todo;
     }
 
-    typeAName(name: string) {
-        let input = element(by.id('userName'));
-        input.click();
-        input.sendKeys(name);
+    getExplaination() {
+        let todo = element(by.id('sageexplain')).getText();
+        this.highlightElement(by.id('sageexplain'));
+
+        return todo;
     }
 
-    selectUpKey() {
-        browser.actions().sendKeys(Key.ARROW_UP).perform();
+    getPlayButton() {
+        let todo = element(by.id('playbutton')).getText();
+        this.highlightElement(by.id('playbutton'));
+
+        return todo;
     }
 
-    getUserByAge() {
-        let input = element(by.id('userName'));
-        input.click();
-        input.sendKeys(Key.TAB);
-    }
+    getAddACardButton() {
+        let todo = element(by.id('addcardbutton')).getText();
+        this.highlightElement(by.id('addcardbutton'));
 
-    getFirstUser() {
-        let user = element(by.id('users')).getText();
-        this.highlightElement(by.id('users'));
-
-        return user;
+        return todo;
     }
 }
-*/
