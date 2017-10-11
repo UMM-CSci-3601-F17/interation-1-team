@@ -14,6 +14,10 @@ export class playComponent implements OnInit {
     //These are public so that tests can reference them (.spec.ts)
     public sages: Play[];
     public allcards: Play[];
+    public totalpoints: number;
+    public notselected: number[] = [1,2,3,4];
+    public selected:number;
+
 
     public sageWord : string;
     public sageSynonym : string;
@@ -29,6 +33,28 @@ export class playComponent implements OnInit {
     //with the server.
     constructor(public sageListService: playService) {
 
+    }
+
+    randomizeSages() {
+        if(this.notselected.length > 0) {
+            let randnum = (Math.random() * 3);
+            this.selected = 0; this.notselected[randnum];
+            this.notselected.splice(randnum, 1);
+        } else {
+            console.log("All hints used.");
+        }
+    }
+
+    nextSage() {
+        this.totalpoints = this.notselected.length;
+        this.selected = 0;
+        this.notselected = [1,2,3,4];
+    }
+
+    resetSage() {
+        this.totalpoints = 0;
+        this.selected = 0;
+        this.notselected = [1,2,3,4];
     }
 
     showSages() : Play[] {
