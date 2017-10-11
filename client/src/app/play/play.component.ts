@@ -2,6 +2,8 @@ import {Component, OnInit} from '@angular/core';
 import {playService} from "./play.service";
 import {Play} from "./play";
 import {Observable} from "rxjs";
+import {MdSnackBar} from "@angular/material";
+import {MatChipsModule} from '@angular/material';
 
 @Component({
     selector: 'play-component',
@@ -12,11 +14,12 @@ import {Observable} from "rxjs";
 
 export class playComponent implements OnInit {
     //These are public so that tests can reference them (.spec.ts)
-    public sages: Play[];
-    public allcards: Play[];
-    public totalpoints: number;
+
+    public sage: Play;
+
+    public totalpoints: number = 0;
     public notselected: number[] = [1,2,3,4];
-    public selected:number;
+    public selected:number = 0;
 
 
     public sageWord : string;
@@ -26,27 +29,27 @@ export class playComponent implements OnInit {
     public sageExample : string;
 
 
-    //Inject the SageListService into this component.
+    //Inject the SageListService into this    MatChipList component.
     //That's what happens in the following constructor.
     //
     //We can call upon the service for interacting
     //with the server.
-    constructor(public sageListService: playService) {
+    constructor(public sageListService: playService, public snackBar: MdSnackBar) {
 
     }
 
     randomizeSages() {
         if(this.notselected.length > 0) {
-            let randnum = (Math.random() * 3);
-            this.selected = 0; this.notselected[randnum];
+            let randnum = Math.floor(Math.random() * this.notselected.length);
+            this.selected = this.notselected[randnum];
             this.notselected.splice(randnum, 1);
         } else {
-            console.log("All hints used.");
+            this.snackBar.open("All hints used", null ,{duration: 3000});
         }
     }
 
     nextSage() {
-        this.totalpoints = this.notselected.length;
+        this.totalpoints = this.notselected.length + 1 + this.totalpoints;
         this.selected = 0;
         this.notselected = [1,2,3,4];
     }
@@ -57,9 +60,9 @@ export class playComponent implements OnInit {
         this.notselected = [1,2,3,4];
     }
 
-    showSages() : Play[] {
-        this.allcards = this.sages;
-        return this.allcards;
+    didntgetSage() {
+        this.notselected = [1,2,3,4];
+        this.selected = 0
     }
 
     refreshSages(): Observable<Play[]> {
@@ -72,7 +75,7 @@ export class playComponent implements OnInit {
         let plays : Observable<Play[]> = this.sageListService.getSages();
         plays.subscribe(
             sages => {
-                this.sages = sages;
+                this.sage = sages[0];
             },
             err => {
                 console.log(err);

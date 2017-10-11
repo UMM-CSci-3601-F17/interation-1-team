@@ -11,3 +11,15 @@
 #list-title {
     padding-right: 14px;
 }
+
+mat-card-title {
+    text-align: center;
+}
+
+.sage-selected {
+    background-color: yellow;
+}
+
+#buttons {
+    text-align: center;
+}

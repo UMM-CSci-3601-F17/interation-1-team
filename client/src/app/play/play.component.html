@@ -1,19 +1,36 @@
 <div layout-gt-sm="row">
     <div flex-gt-sm="80" flex-offset-gt-sm="10">
-        <mat-card>
-            <mat-card-title id="sage-list-title">Cards</mat-card-title>
+        <mat-card *ngIf="sage">
+            <mat-card-title class="list-group-item">{{ sage.word }}</mat-card-title>
             <mat-divider></mat-divider>
             <mat-card-content>
-                <mat-list *ngIf="sages; else cardsError">
-                    <mat-list-item id="sages" *ngFor="let sage of this.showSages()" class="list-group-item">
-                        Word: {{ sage.word }} ||
-                        Synonym: {{ sage.synonym }} ||
-                        Antonym: {{ sage.antonym }} ||
-                        General Sense: {{ sage.gensense }} ||
+                <mat-list class="list-group-item">
+                    <mat-list-item id="sages" class="list-group-item" [ngClass]="{'sage-selected': selected == 1}">
+                        Synonym: {{ sage.synonym }}
+                    </mat-list-item>
+                    <mat-list-item id="sages" class="list-group-item" [ngClass]="{'sage-selected': selected == 2}">
+                        Antonym: {{ sage.antonym }}
+                    </mat-list-item>
+                    <mat-list-item id="sages" class="list-group-item" [ngClass]="{'sage-selected': selected == 3}">
+                        General Sense: {{ sage.gensense }}<br>
+                    </mat-list-item>
+                    <mat-list-item id="sages" class="list-group-item" [ngClass]="{'sage-selected': selected == 4}">
                         Example: {{ sage.example }}
                     </mat-list-item>
+
                 </mat-list>
-                <!-- Maybe this should be a pop-up instead of just a text message? Not sure. -->
+
+                <div id="buttons">
+                <button mat-raised-button color="primary" (click)="randomizeSages()">Random Sage</button>
+                <button mat-raised-button color="primary" (click)="nextSage()">Next Card</button>
+                <button mat-raised-button color="primary" (click)="didntgetSage()">Do not Know</button>
+                <button mat-raised-button color="primary" (click)="resetSage()">Reset</button>
+                </div>
+
+                <mat-chip-list>
+                    <mat-chip color="primary" selected="true" id="points" class="list-group-item">Total Points: {{ totalpoints }}</mat-chip>
+                </mat-chip-list>
+
                 <ng-template #cardsError>
                     <p>
                         There was a problem loading the cards. Possibly the server is down or perhaps there are network
