@@ -12,6 +12,8 @@ import {UserListComponent} from './users/user-list.component';
 import {UserListService} from './users/user-list.service';
 import {createcardListComponent} from './createcards/sage-list.component';
 import {createcardsListService} from './createcards/sage-list.service';
+import {playComponent} from './play/play.component';
+import {playService} from "./play/play.service";
 import {Routing} from './app.routes';
 import {APP_BASE_HREF} from "@angular/common";
 
@@ -31,13 +33,17 @@ import {SharedModule} from "./shared.module";
         HomeComponent,
         UserListComponent,
         UserComponent,
-        createcardListComponent
+        createcardListComponent,
+        playComponent
     ],
     providers: [
         UserListService,
         {provide: APP_BASE_HREF, useValue: '/'},
         {provide: MATERIAL_COMPATIBILITY_MODE, useValue: true},
         createcardsListService,
+        {provide: APP_BASE_HREF, useValue: '/'},
+        {provide: MATERIAL_COMPATIBILITY_MODE, useValue: true},
+        playService,
         {provide: APP_BASE_HREF, useValue: '/'},
         {provide: MATERIAL_COMPATIBILITY_MODE, useValue: true}
     ],

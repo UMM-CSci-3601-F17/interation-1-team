@@ -1,0 +1,25 @@
+#addUser {
+    flex-basis: 100%;
+    max-width: 100%;
+}
+
+#title input {
+    width:16%;
+    min-width: 100px;
+}
+
+#list-title {
+    padding-right: 14px;
+}
+
+mat-card-title {
+    text-align: center;
+}
+
+.sage-selected {
+    background-color: yellow;
+}
+
+#buttons {
+    text-align: center;
+}
