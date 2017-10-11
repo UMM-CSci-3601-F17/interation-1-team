@@ -37,11 +37,12 @@ describe('Home', () => {
         fixture.detectChanges();
         let playButton: HTMLElement = fixture.debugElement.query(By.css('mat-card-actions')).nativeElement;
         expect(playButton.textContent).toContain("Play");
-    })
+    });
 
     it('should have a button called `Add a Card`',() => {
         fixture.detectChanges();
         let playButton: HTMLElement = fixture.debugElement.query(By.css('mat-card-actions')).nativeElement;
         expect(playButton.textContent).toContain("Add a Card");
-    })
+    });
+
 });
