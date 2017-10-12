@@ -1,27 +1,29 @@
 <!-- this is an extremely simple adding mechanism that was added to make testing easier, not essential to the iteration -->
 <div layout-gt-sm="row">
     <div flex-gt-sm="80" flex-offset-gt-sm="10">
+        <mat-card>
+            <mat-card-title id="NewCardTitle">New Card</mat-card-title>
         <mat-card id="template-card">
             <mat-card-title>New Card</mat-card-title>
             <mat-divider></mat-divider>
             <mat-card-content>
                 <mat-form-field>
-                    <input matInput #input type="text" placeholder="Word" [(ngModel)]="newSageWord">
+                    <input matInput id="newsageword" #input type="text" placeholder="Word" [(ngModel)]="newSageWord">
                 </mat-form-field>
                 <mat-form-field>
-                    <input matInput #input type="text" placeholder="Synonym" [(ngModel)]="newSageSynonym">
+                    <input matInput id="newsagesynonym" #input type="text" placeholder="Synonym" [(ngModel)]="newSageSynonym">
                 </mat-form-field>
                 <mat-form-field>
-                    <input matInput #input type="text" placeholder="Antonym" [(ngModel)]="newSageAntonym">
+                    <input matInput id="newsageantonym" #input type="text" placeholder="Antonym" [(ngModel)]="newSageAntonym">
                 </mat-form-field>
                 <mat-form-field>
-                    <input matInput #input type="text" placeholder="General Sense" [(ngModel)]="newSageGensense">
+                    <input matInput id="newsagegensense" #input type="text" placeholder="General Sense" [(ngModel)]="newSageGensense">
                 </mat-form-field>
                 <mat-form-field>
-                <input matInput #input type="text" placeholder="Example" [(ngModel)]="newSageExample">
+                <input matInput id="newsageexample" #input type="text" placeholder="Example" [(ngModel)]="newSageExample">
                 </mat-form-field>
 
-                <button mat-raised-button color="primary" #input type="button"
+                <button mat-raised-button id="addsagebutton" color="primary" #input type="button"
                         (click)="this.addNewSage(newSageWord, newSageSynonym, newSageAntonym, newSageGensense, newSageExample)">Add Card</button>
             </mat-card-content>
         </mat-card>

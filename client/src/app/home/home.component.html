@@ -5,15 +5,17 @@
         <mat-card>
             <mat-card-title id="i-am-sage">{{ this.text }}</mat-card-title>
             <mat-card-content style="text-align: center; font-size: 28pt;">
-                <p>
+                <p id="sageexplain">
                     Welcome to I am SAGE, an educational vocabulary learning tool!
                 </p>
             </mat-card-content>
         </mat-card>
         <mat-card>
             <mat-card-actions id="home_buttons">
-                <button mat-button color="accent" class="text-upper" routerLink="/users">Play</button>
-                <button mat-button class="text-upper" color="accent" routerLink="/addcards">Add a Card</button>
+                <div>
+                    <button id="playbutton" mat-raised-button class="text-upper" color="primary" routerLink="/play">Play</button>
+                    <button id="addcardbutton" mat-raised-button class="text-upper" color="primary" routerLink="/addcards">Add a Card</button>
+                </div>
             </mat-card-actions>
         </mat-card>
     </div>

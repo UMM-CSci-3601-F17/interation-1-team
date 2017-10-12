@@ -1,0 +1,47 @@
+<div layout-gt-sm="row">
+    <div flex-gt-sm="80" flex-offset-gt-sm="10">
+        <mat-card *ngIf="sage">
+            <mat-card-title id="sagesword" class="list-group-item">{{ sage.word }}</mat-card-title>
+            <mat-divider></mat-divider>
+            <mat-card-content>
+                <mat-list class="list-group-item">
+                    <mat-list-item id="sagessyn" class="list-group-item" [ngClass]="{'sage-selected': selected == 1}">
+                        Synonym: {{ sage.synonym }}
+                    </mat-list-item>
+                    <mat-list-item id="sagesant" class="list-group-item" [ngClass]="{'sage-selected': selected == 2}">
+                        Antonym: {{ sage.antonym }}
+                    </mat-list-item>
+                    <mat-list-item id="sagesgensense" class="list-group-item" [ngClass]="{'sage-selected': selected == 3}">
+                        General Sense: {{ sage.gensense }}<br>
+                    </mat-list-item>
+                    <mat-list-item id="sagesexam" class="list-group-item" [ngClass]="{'sage-selected': selected == 4}">
+                        Example: {{ sage.example }}
+                    </mat-list-item>
+
+                </mat-list>
+
+                <div class="sage-buttons">
+                <button id="hint" mat-raised-button color="primary" (click)="randomizeSages()">Hint</button>
+                <button id="next" mat-raised-button color="primary" (click)="nextSage()">Next Card</button>
+                <button id="dontknow" mat-raised-button color="primary" (click)="didntgetSage()">Do not Know</button>
+                <button id="reset" mat-raised-button color="primary" (click)="resetSage()">Reset</button>
+                </div>
+
+                <mat-chip-list>
+                    <mat-chip id="totalpoints" color="primary" selected="true" class="list-group-item">Total Points: {{ totalpoints }}</mat-chip>
+                </mat-chip-list>
+
+                <ng-template #cardsError>
+                    <p>
+                        There was a problem loading the cards. Possibly the server is down or perhaps there are network
+                        issues.
+                    </p>
+                    <p>
+                        Please wait a bit and try again or start the server.
+                    </p>
+                </ng-template>
+            </mat-card-content>
+        </mat-card>
+    </div>
+</div>
+

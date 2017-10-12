@@ -59,7 +59,7 @@ public class Server {
 
         // Redirects for the "home" page
         redirect.get("", "/");
-        
+
         Route clientRoute = (req, res) -> {
             InputStream stream = Server.class.getResourceAsStream("/public/index.html");
             return IOUtils.toString(stream);
@@ -78,6 +78,7 @@ public class Server {
 
         get("api/sages", sageController::getSages);
         get("api/sages/:id", sageController::getSage);
+        get("api/onesage", sageController::getSingleSage);
         post("api/sages/new", sageController::addNewSage);
 
         // An example of throwing an unhandled exception so you can see how the
