@@ -54,6 +54,11 @@ describe('iteration 1', () => {
         page.addAGenSense("even more stuff");
         page.addAExample("endless stuff");
         page.addCardButton();
-        expect(page.getFirstCard()).toEqual("Word: stuff || Synonym: more stuff || Antonym: some more stuff || General Sense: even more stuff || Example: endless stuff");
+        expect(page.getFirstCard()).toEqual(
+            "Word: stuff\n" +
+            "Synonym: more stuff\n" +
+            "Antonym: some more stuff\n" +
+            "General Sense: even more stuff\n" +
+            "Example: endless stuff");
     });
 });
